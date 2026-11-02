@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CI/CD Task Manager</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <div>
+        <p class="eyebrow">NODE.JS DEVOPS POC</p>
+        <h1>CI/CD Task Manager</h1>
+        <p class="subtitle">
+          GitHub Actions • Jenkins • Automated Testing
+        </p>
+      </div>
+
+      <div class="status">
+        <span class="status-dot"></span>
+        Application Running
+      </div>
+    </header>
+
+    <section class="card">
+      <form id="task-form">
+        <input
+          id="task-title"
+          type="text"
+          placeholder="Enter a new task..."
+          autocomplete="off"
+          required
+        >
+        <button type="submit">Add Task</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="section-heading">
+        <h2>Tasks</h2>
+        <span id="task-count">0 tasks</span>
+      </div>
+
+      <div id="message"></div>
+      <ul id="task-list"></ul>
+    </section>
+
+    <footer>
+      Node.js CI/CD Proof of Concept
+    </footer>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
