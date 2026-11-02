@@ -64,7 +64,7 @@ describe('Task Service', () => {
   test('uses Medium as the default priority', () => {
     const task = createTask('Configure Jenkins');
 
-    expect(task.priority).toBe('High');
+    expect(task.priority).toBe('Medium');
   });
 
   test('rejects an invalid priority', () => {
