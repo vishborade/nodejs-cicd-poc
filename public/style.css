@@ -151,3 +151,36 @@ footer {
   color: #8b93a3;
   font-size: 13px;
 }
+
+select {
+  padding: 13px 15px;
+  border: 1px solid #d8deea;
+  border-radius: 8px;
+  background: white;
+  color: #172033;
+  font-size: 15px;
+}
+
+.priority {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none !important;
+}
+
+.priority-low {
+  background: #e9f9ef;
+  color: #247a45;
+}
+
+.priority-medium {
+  background: #fff4d6;
+  color: #8a6200;
+}
+
+.priority-high {
+  background: #fce8e8;
+  color: #b42318;
+}

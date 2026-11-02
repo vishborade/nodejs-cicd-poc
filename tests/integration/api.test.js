@@ -76,4 +76,42 @@ describe('Task Manager API', () => {
 
     expect(listResponse.body).toHaveLength(1);
   });
+
+  test('POST /api/tasks creates a task with priority', async () => {
+    const response = await request(app)
+      .post('/api/tasks')
+      .send({
+        title: 'Configure Jenkins',
+        priority: 'High'
+      });
+
+    expect(response.status).toBe(201);
+    expect(response.body.priority).toBe('High');
+  });
+
+  test('POST /api/tasks rejects an invalid priority', async () => {
+    const response = await request(app)
+      .post('/api/tasks')
+      .send({
+        title: 'Configure Jenkins',
+        priority: 'Critical'
+      });
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBe(
+      'Priority must be Low, Medium, or High'
+    );
+  });
+
+  test('PUT /api/tasks/:id updates priority', async () => {
+    const response = await request(app)
+      .put('/api/tasks/1')
+      .send({
+        priority: 'Low'
+      });
+
+    expect(response.status).toBe(200);
+    expect(response.body.priority).toBe('Low');
+  });
+
 });

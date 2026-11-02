@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   try {
-    const task = createTask(req.body.title);
+    const task = createTask(req.body.title, req.body.priority);
     res.status(201).json(task);
   } catch (error) {
     res.status(400).json({ error: error.message });
