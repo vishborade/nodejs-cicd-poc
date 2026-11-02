@@ -1,13 +1,17 @@
+const VALID_PRIORITIES = ['Low', 'Medium', 'High'];
+
 let tasks = [
   {
     id: 1,
     title: 'Build Node.js CI/CD POC',
-    completed: false
+    completed: false,
+    priority: 'High'
   },
   {
     id: 2,
     title: 'Add automated tests',
-    completed: false
+    completed: false,
+    priority: 'Medium'
   }
 ];
 
@@ -17,15 +21,20 @@ function getAllTasks() {
   return tasks;
 }
 
-function createTask(title) {
+function createTask(title, priority = 'Medium') {
   if (!title || typeof title !== 'string' || !title.trim()) {
     throw new Error('Task title is required');
+  }
+
+  if (!VALID_PRIORITIES.includes(priority)) {
+    throw new Error('Priority must be Low, Medium, or High');
   }
 
   const task = {
     id: nextId++,
     title: title.trim(),
-    completed: false
+    completed: false,
+    priority
   };
 
   tasks.push(task);
@@ -55,6 +64,14 @@ function updateTask(id, updates) {
     task.completed = updates.completed;
   }
 
+  if (updates.priority !== undefined) {
+    if (!VALID_PRIORITIES.includes(updates.priority)) {
+      throw new Error('Priority must be Low, Medium, or High');
+    }
+
+    task.priority = updates.priority;
+  }
+
   return task;
 }
 
@@ -74,12 +91,14 @@ function resetTasks() {
     {
       id: 1,
       title: 'Build Node.js CI/CD POC',
-      completed: false
+      completed: false,
+      priority: 'High'
     },
     {
       id: 2,
       title: 'Add automated tests',
-      completed: false
+      completed: false,
+      priority: 'Medium'
     }
   ];
 

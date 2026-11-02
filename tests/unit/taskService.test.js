@@ -54,4 +54,31 @@ describe('Task Service', () => {
   test('returns false when deleting a missing task', () => {
     expect(deleteTask(999)).toBe(false);
   });
+
+  test('creates a task with priority', () => {
+    const task = createTask('Configure Jenkins', 'High');
+
+    expect(task.priority).toBe('High');
+  });
+
+  test('uses Medium as the default priority', () => {
+    const task = createTask('Configure Jenkins');
+
+    expect(task.priority).toBe('Medium');
+  });
+
+  test('rejects an invalid priority', () => {
+    expect(() =>
+      createTask('Configure Jenkins', 'Critical')
+    ).toThrow('Priority must be Low, Medium, or High');
+  });
+
+  test('updates task priority', () => {
+    const task = updateTask(1, {
+      priority: 'Low'
+    });
+
+    expect(task.priority).toBe('Low');
+  });
+
 });

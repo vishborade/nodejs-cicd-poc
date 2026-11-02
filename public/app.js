@@ -1,6 +1,7 @@
 const taskList = document.getElementById('task-list');
 const taskForm = document.getElementById('task-form');
 const taskTitle = document.getElementById('task-title');
+const taskPriority = document.getElementById('task-priority');
 const taskCount = document.getElementById('task-count');
 const message = document.getElementById('message');
 
@@ -53,8 +54,13 @@ function renderTasks(tasks) {
     const title = document.createElement('span');
     title.textContent = task.title;
 
+    const priority = document.createElement('span');
+    priority.className = `priority priority-${task.priority.toLowerCase()}`;
+    priority.textContent = task.priority;
+
     taskInfo.appendChild(checkbox);
     taskInfo.appendChild(title);
+    taskInfo.appendChild(priority);
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
@@ -75,6 +81,7 @@ taskForm.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const title = taskTitle.value.trim();
+  const priority = taskPriority.value;
 
   if (!title) {
     return;
@@ -86,7 +93,7 @@ taskForm.addEventListener('submit', async (event) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ title })
+      body: JSON.stringify({ title, priority })
     });
 
     if (!response.ok) {
